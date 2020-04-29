@@ -25,7 +25,7 @@ class App extends Component {
 
   render() {
     const data = this.state.temps;
-    console.log(this.state.temps);
+    // console.log(this.state.temps);
     return (
       <div className="App">
         <h2>Data Visualisation: React + d3</h2>
