@@ -4,6 +4,7 @@ import chroma from "chroma-js";
 
 const width = 700;
 const height = 400;
+const margin = 20;
 const red = "#eb6a5b";
 const green = "#b6e86f";
 const blue = "#52b6ca";
@@ -14,8 +15,21 @@ class BarChart extends Component {
     const data = [12, 17, 16, 6, 9, 10];
 
     const svg = d3.select("svg");
+
+    // Color
     const colorDomain = d3.extent(data);
     const colorScale = d3.scaleLinear().domain(colorDomain);
+
+    // Axis
+    const yScale = d3
+      .scaleLinear()
+      .range(height - margin, margin)
+      .domain([0, d3.max(data)]);
+    const yAxis = d3
+      .axisLeft(yScale)
+      // .scale(yScale)
+      .tickFormat((d) => d);
+
     svg
       .selectAll("rect")
       .data(data)
@@ -26,14 +40,26 @@ class BarChart extends Component {
       .attr("width", 25)
       .attr("height", (d, i) => d * 10)
       .attr("fill", (d, i) => colors(colorScale(d)));
+
+    svg.append("g").call(yAxis).attr("transform", "translate(0,200)");
   }
 
   componentDidMount() {
     this.drawChart();
   }
 
+  componentDidUpdate() {
+    // this.drawChart();
+  }
+
   render() {
-    return <svg width={width} height={height}></svg>;
+    return (
+      <svg width={width} height={height}>
+        {/* <g>
+          <g className="axis" transform={`translate(${margin}, 0)`} />
+        </g> */}
+      </svg>
+    );
   }
 }
 

@@ -3,9 +3,9 @@ import "./App.css";
 import BarChart from "./visualizations/BarChart";
 
 class App extends Component {
-  constructor(props) {
-    super(props);
-  }
+  // constructor(props) {
+  //   super(props);
+  // }
 
   state = {
     temps: {},
@@ -29,7 +29,7 @@ class App extends Component {
     return (
       <div className="App">
         <h2>Data Visualisation: React + d3</h2>
-        <BarChart data={data} />
+        <BarChart data1={data} />
       </div>
     );
   }
